@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="PetCare.authentication" target="21" />
+      <module name="PetCare.dashboard" target="21" />
+      <module name="PetCare.splash" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

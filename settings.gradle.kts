@@ -11,6 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -21,6 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "PetCare"
 include(":app")
-include(":splash")
-include(":authentication")
-include(":dashboard")
+include(":utils")
