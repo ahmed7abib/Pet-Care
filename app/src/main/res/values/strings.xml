@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PetCare</string>
+    <string name="personalized_pet_profiles">Personalized Pet Profiles</string>
+    <string name="create_personalized_profiles_for_each_of_your_beloved_pets_on_pawbuddy_share_their_name_breed_and_age_while_connecting_with_a_vibrant_community">Create personalized profiles for each of your beloved pets on PawBuddy. Share their name, breed, and age while connecting with a vibrant community.</string>
+    <string name="get_started">Get started</string>
+    <string name="sign_up_later">Sign up later</string>
 </resources>
