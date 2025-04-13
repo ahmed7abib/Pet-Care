@@ -4,4 +4,11 @@
     <string name="create_personalized_profiles_for_each_of_your_beloved_pets_on_pawbuddy_share_their_name_breed_and_age_while_connecting_with_a_vibrant_community">Create personalized profiles for each of your beloved pets on PawBuddy. Share their name, breed, and age while connecting with a vibrant community.</string>
     <string name="get_started">Get started</string>
     <string name="sign_up_later">Sign up later</string>
+    <string name="create_account">Create Account</string>
+    <string name="welcome_please_enter_your_information_below_and_get_started">Welcome! Please enter your information below and get started.</string>
+    <string name="your_email">Your Email</string>
+    <string name="password">Password</string>
+    <string name="accept_terms_and_conditions">Accept terms and conditions</string>
+    <string name="already_have_an_account">"Already have an account? "</string>
+    <string name="login_here">Login here</string>
 </resources>

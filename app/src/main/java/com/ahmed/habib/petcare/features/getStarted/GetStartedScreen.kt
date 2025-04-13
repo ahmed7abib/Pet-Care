@@ -29,6 +29,11 @@ import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.features.onBoarding.OnboardingBaseScreen
 import com.ahmed.habib.petcare.ui.getCatamaranFont
 import com.ahmed.habib.petcare.ui.getNotoSansFont
+import com.ahmed.habib.petcare.ui.theme.Blue
+import com.ahmed.habib.petcare.ui.theme.Grey0
+import com.ahmed.habib.petcare.ui.theme.Grey1
+import com.ahmed.habib.petcare.ui.theme.Grey2
+import com.ahmed.habib.petcare.ui.theme.Yellow
 
 @Composable
 fun GetStartedScreen() {
@@ -52,7 +57,7 @@ fun GetStartedScreen() {
                 horizontalArrangement = Arrangement.Center
             ) {
                 repeat(3) { index ->
-                    val color = if (index == 1) Color(0xFFFFC107) else Color(0xFFE0E0E0)
+                    val color = if (index == 1) Yellow else Grey0
 
                     Box(
                         modifier = Modifier
@@ -72,7 +77,7 @@ fun GetStartedScreen() {
                 fontSize = 26.sp,
                 fontWeight = FontWeight.W700,
                 fontFamily = getCatamaranFont(),
-                color = Color(0xFF39434F),
+                color = Grey1,
                 textAlign = TextAlign.Center
             )
 
@@ -83,7 +88,7 @@ fun GetStartedScreen() {
                 fontSize = 16.sp,
                 fontFamily = getNotoSansFont(),
                 fontWeight = FontWeight.W500,
-                color = Color(0xFF808B9A),
+                color = Grey2,
                 textAlign = TextAlign.Center
             )
 
@@ -91,7 +96,7 @@ fun GetStartedScreen() {
 
             Button(
                 onClick = { onGetStartedClick() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007BFF)),
+                colors = ButtonDefaults.buttonColors(containerColor = Blue),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(50.dp),

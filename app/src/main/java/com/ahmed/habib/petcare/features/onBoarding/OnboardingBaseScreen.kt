@@ -22,7 +22,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ahmed.habib.petcare.R
+import com.ahmed.habib.petcare.features.getStarted.GetStartedScreen
 import com.ahmed.habib.petcare.features.register.RegisterScreen
+import com.ahmed.habib.petcare.ui.theme.Blue
+import com.ahmed.habib.petcare.ui.theme.Grey5
+import com.ahmed.habib.petcare.ui.theme.Grey6
 
 @Composable
 fun OnboardingBaseScreen(
@@ -33,13 +37,7 @@ fun OnboardingBaseScreen(
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFFFAFAFA), Color(0xFFD9D9D9)
-                    )
-                )
-            )
+            .background(brush = Brush.verticalGradient(colors = listOf(Grey5, Grey6)))
     ) {
 
         val (dogImage, card, circleImage) = createRefs()
@@ -87,7 +85,7 @@ fun OnboardingBaseScreen(
             Icon(
                 painter = painterResource(circleIcon),
                 contentDescription = "Circle Icon",
-                tint = Color(0xFF007BFF)
+                tint = Blue
             )
         }
     }
@@ -96,5 +94,5 @@ fun OnboardingBaseScreen(
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun PreviewScreen() {
-    RegisterScreen()
+    GetStartedScreen()
 }
