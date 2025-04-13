@@ -11,4 +11,9 @@
     <string name="accept_terms_and_conditions">Accept terms and conditions</string>
     <string name="already_have_an_account">"Already have an account? "</string>
     <string name="login_here">Login here</string>
+    <string name="validation_code">Validation code</string>
+    <string name="check_your_email_inbox_and_enter_the_validation_code_here">Check your email inbox and enter the validation code here</string>
+    <string name="resend">Resend</string>
+    <string name="did_not_receive_the_code">"Did not receive the code? "</string>
+    <string name="confirm">Confirm</string>
 </resources>
