@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.features.onBoarding.OnboardingBaseScreen
-import com.ahmed.habib.petcare.ui.getCatamaranFont
-import com.ahmed.habib.petcare.ui.getNotoSansFont
-import com.ahmed.habib.petcare.ui.theme.Blue
+import com.ahmed.habib.petcare.ui.common.getCatamaranFont
+import com.ahmed.habib.petcare.ui.common.getNotoSansFont
+import com.ahmed.habib.petcare.ui.theme.Blue1
 import com.ahmed.habib.petcare.ui.theme.Grey0
 import com.ahmed.habib.petcare.ui.theme.Grey1
 import com.ahmed.habib.petcare.ui.theme.Grey2
@@ -81,7 +81,7 @@ fun GetStartedScreen() {
 
         Button(
             onClick = { onGetStartedClick() },
-            colors = ButtonDefaults.buttonColors(containerColor = Blue),
+            colors = ButtonDefaults.buttonColors(containerColor = Blue1),
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp),

@@ -1,6 +1,7 @@
 package com.ahmed.habib.petcare.features.dashboard
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,7 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -23,9 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -34,11 +33,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
 import com.ahmed.habib.petcare.R
-import com.ahmed.habib.petcare.ui.getCatamaranFont
-import com.ahmed.habib.petcare.ui.getNotoSansFont
+import com.ahmed.habib.petcare.ui.common.AsyncImage
+import com.ahmed.habib.petcare.ui.common.SwipeButton
+import com.ahmed.habib.petcare.ui.common.getCatamaranFont
+import com.ahmed.habib.petcare.ui.common.getNotoSansFont
+import com.ahmed.habib.petcare.ui.theme.Blue0
+import com.ahmed.habib.petcare.ui.theme.Blue1
 import com.ahmed.habib.petcare.ui.theme.Grey2
 import com.ahmed.habib.petcare.ui.theme.Grey3
 import com.ahmed.habib.petcare.ui.theme.Grey7
@@ -88,21 +89,29 @@ fun DashboardScreen() {
                 }
         )
 
-        Button(
-            onClick = {},
+        SwipeButton(
+            btnName = stringResource(R.string.swipe_to_continue),
+            textColor = Blue1,
+            icon = R.drawable.right_arrow,
             modifier = Modifier
+                .height(60.dp)
                 .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp))
+                .background(Blue0)
                 .constrainAs(bottomBar) {
                     bottom.linkTo(parent.bottom)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 }
         ) {
-            Text(
-                text = "Swipe To Continue"
-            )
+            onSwipeCompleted()
         }
     }
+}
+
+private fun onSwipeCompleted() {
+    // todo: Navigate to the next screen
+    print("Ahmmmmmmmmmmmmmmmmmmmmm")
 }
 
 @Composable
@@ -173,32 +182,6 @@ private fun Toolbar(
             )
         }
     }
-}
-
-@Composable
-fun AsyncImage(
-    model: String,
-    contentDescription: String,
-    modifier: Modifier,
-    contentScale: ContentScale,
-    placeholder: Painter,
-    error: Painter,
-) {
-    val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current)
-            .data(model)
-            .crossfade(true)
-            .build(),
-        placeholder = placeholder,
-        error = error
-    )
-
-    Image(
-        painter = painter,
-        contentDescription = contentDescription,
-        contentScale = contentScale,
-        modifier = modifier
-    )
 }
 
 @Composable

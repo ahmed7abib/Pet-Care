@@ -5,6 +5,7 @@
       <module name="PetCare.authentication" target="21" />
       <module name="PetCare.dashboard" target="21" />
       <module name="PetCare.splash" target="21" />
+      <module name="PetCare.utils" target="21" />
     </bytecodeTargetLevel>
   </component>
 </project>

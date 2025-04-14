@@ -18,4 +18,5 @@
     <string name="confirm">Confirm</string>
     <string name="looks_like_you_have_no_profiles_set_up_at_this_moment_add_your_pet_now">Looks like you have no profiles set up at this moment, add your pet now.</string>
     <string name="uh_oh">Uh Oh!</string>
+    <string name="swipe_to_continue">Swipe To Continue</string>
 </resources>

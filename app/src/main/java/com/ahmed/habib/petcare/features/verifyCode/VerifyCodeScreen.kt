@@ -30,9 +30,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.features.onBoarding.OnboardingBaseScreen
-import com.ahmed.habib.petcare.ui.getCatamaranFont
-import com.ahmed.habib.petcare.ui.getNotoSansFont
-import com.ahmed.habib.petcare.ui.theme.Blue
+import com.ahmed.habib.petcare.ui.common.getCatamaranFont
+import com.ahmed.habib.petcare.ui.common.getNotoSansFont
+import com.ahmed.habib.petcare.ui.theme.Blue1
 import com.ahmed.habib.petcare.ui.theme.Grey2
 import com.ahmed.habib.petcare.ui.theme.Grey3
 import com.ahmed.habib.petcare.ui.theme.Grey4
@@ -74,7 +74,7 @@ fun VerifyCodeScreen() {
                 .fillMaxWidth()
                 .height(50.dp),
             shape = RoundedCornerShape(12.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Blue)
+            colors = ButtonDefaults.buttonColors(containerColor = Blue1)
         ) {
             Text(
                 text = stringResource(R.string.confirm),
@@ -97,7 +97,7 @@ fun VerifyCodeScreen() {
 
             Text(
                 text = stringResource(R.string.resend),
-                color = Blue,
+                color = Blue1,
                 fontSize = 14.sp,
                 fontFamily = getNotoSansFont(),
                 modifier = Modifier.clickable { onResendBtnClicked() }

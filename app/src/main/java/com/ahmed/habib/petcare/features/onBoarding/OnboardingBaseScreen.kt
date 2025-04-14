@@ -26,8 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.features.dashboard.DashboardScreen
-import com.ahmed.habib.petcare.features.verifyCode.VerifyCodeScreen
-import com.ahmed.habib.petcare.ui.theme.Blue
+import com.ahmed.habib.petcare.ui.theme.Blue1
 import com.ahmed.habib.petcare.ui.theme.Grey5
 import com.ahmed.habib.petcare.ui.theme.Grey6
 
@@ -100,7 +99,7 @@ fun OnboardingBaseScreen(
             Icon(
                 painter = painterResource(circleIcon),
                 contentDescription = "Circle Icon",
-                tint = Blue
+                tint = Blue1
             )
         }
     }

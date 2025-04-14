@@ -31,9 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.features.onBoarding.OnboardingBaseScreen
-import com.ahmed.habib.petcare.ui.getCatamaranFont
-import com.ahmed.habib.petcare.ui.getNotoSansFont
-import com.ahmed.habib.petcare.ui.theme.Blue
+import com.ahmed.habib.petcare.ui.common.getCatamaranFont
+import com.ahmed.habib.petcare.ui.common.getNotoSansFont
+import com.ahmed.habib.petcare.ui.theme.Blue1
 import com.ahmed.habib.petcare.ui.theme.Grey2
 import com.ahmed.habib.petcare.ui.theme.Grey3
 import com.ahmed.habib.petcare.ui.theme.Grey4
@@ -80,7 +80,7 @@ fun RegisterScreen() {
                 unfocusedIndicatorColor = Color.LightGray,
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
-                focusedLabelColor = Blue,
+                focusedLabelColor = Blue1,
                 unfocusedLabelColor = Grey2
             )
         )
@@ -99,7 +99,7 @@ fun RegisterScreen() {
                 unfocusedIndicatorColor = Color.LightGray,
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
-                focusedLabelColor = Blue,
+                focusedLabelColor = Blue1,
                 unfocusedLabelColor = Grey2
             )
         )
@@ -117,7 +117,7 @@ fun RegisterScreen() {
                     .size(16.dp)
                     .padding(start = 12.dp),
                 colors = CheckboxDefaults.colors(
-                    checkedColor = Blue,
+                    checkedColor = Blue1,
                     uncheckedColor = Grey2
                 )
             )
@@ -139,7 +139,7 @@ fun RegisterScreen() {
                 .fillMaxWidth()
                 .height(50.dp),
             shape = RoundedCornerShape(12.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Blue)
+            colors = ButtonDefaults.buttonColors(containerColor = Blue1)
         ) {
             Text(
                 text = stringResource(R.string.create_account),
@@ -162,7 +162,7 @@ fun RegisterScreen() {
 
             Text(
                 text = stringResource(R.string.login_here),
-                color = Blue,
+                color = Blue1,
                 fontSize = 14.sp,
                 fontFamily = getNotoSansFont(),
                 modifier = Modifier.clickable { onLoginHereClicked() }

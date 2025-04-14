@@ -62,9 +62,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Custom Libs
-    implementation(project(":utils"))
-
     // Compose Constraint
     implementation(libs.androidx.constraintlayout.compose)
 
@@ -74,4 +71,7 @@ dependencies {
 
     // Coil
     implementation(libs.coil.compose)
+
+    // Foundation
+    implementation(libs.androidx.foundation)
 }

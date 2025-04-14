@@ -1,4 +1,4 @@
-package com.ahmed.habib.petcare.ui
+package com.ahmed.habib.petcare.ui.common
 
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
