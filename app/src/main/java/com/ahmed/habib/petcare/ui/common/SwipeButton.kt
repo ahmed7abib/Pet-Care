@@ -78,8 +78,8 @@ fun SwipeButton(
                     onDragStopped = {
                         coroutineScope.launch {
                             if (swipeState.value >= maxOffsetPx * 0.9f) {
-                                onSwipeComplete()
                                 swipeState.animateTo(maxOffsetPx)
+                                onSwipeComplete()
                             } else {
                                 swipeState.animateTo(0f)
                             }

@@ -110,8 +110,8 @@ fun DashboardScreen() {
 }
 
 private fun onSwipeCompleted() {
+    println("Swipe stopped : ")
     // todo: Navigate to the next screen
-    print("Ahmmmmmmmmmmmmmmmmmmmmm")
 }
 
 @Composable
