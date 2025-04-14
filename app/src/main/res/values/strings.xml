@@ -16,4 +16,6 @@
     <string name="resend">Resend</string>
     <string name="did_not_receive_the_code">"Did not receive the code? "</string>
     <string name="confirm">Confirm</string>
+    <string name="looks_like_you_have_no_profiles_set_up_at_this_moment_add_your_pet_now">Looks like you have no profiles set up at this moment, add your pet now.</string>
+    <string name="uh_oh">Uh Oh!</string>
 </resources>

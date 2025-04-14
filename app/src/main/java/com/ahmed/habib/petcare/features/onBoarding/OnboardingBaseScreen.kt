@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ahmed.habib.petcare.R
+import com.ahmed.habib.petcare.features.dashboard.DashboardScreen
 import com.ahmed.habib.petcare.features.verifyCode.VerifyCodeScreen
 import com.ahmed.habib.petcare.ui.theme.Blue
 import com.ahmed.habib.petcare.ui.theme.Grey5
@@ -108,5 +109,5 @@ fun OnboardingBaseScreen(
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun PreviewScreen() {
-    VerifyCodeScreen()
+    DashboardScreen()
 }

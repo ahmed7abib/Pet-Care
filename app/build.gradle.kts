@@ -71,4 +71,7 @@ dependencies {
     // For Preview
     debugImplementation(libs.ui.tooling)
     implementation(libs.androidx.ui.tooling.preview)
+
+    // Coil
+    implementation(libs.coil.compose)
 }
