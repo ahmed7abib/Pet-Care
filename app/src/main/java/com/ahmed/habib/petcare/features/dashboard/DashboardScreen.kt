@@ -3,6 +3,8 @@ package com.ahmed.habib.petcare.features.dashboard
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
@@ -18,6 +20,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import com.ahmed.habib.petcare.ui.theme.Grey0
+import com.ahmed.habib.petcare.ui.theme.Grey2
 import kotlin.math.roundToInt
 
 @Composable
@@ -32,12 +36,17 @@ fun DashboardScreen() {
     val screenWidthState = remember { derivedStateOf { (screenWidth * density).roundToInt() } }
     val offsetValue by remember { derivedStateOf { (screenWidthState.value / 4).dp } }
 
-    val animatedScale by animateFloatAsState(targetValue = if (drawerState.isOpened()) 0.7f else 1f)
-    val animatedOffset by animateDpAsState(targetValue = if (drawerState.isOpened()) offsetValue else 0.dp)
+    val animatedScaleX by animateFloatAsState(targetValue = if (drawerState.isOpened()) 0.7f else 1f)
+    val animatedScaleY by animateFloatAsState(targetValue = if (drawerState.isOpened()) 0.85f else 1f)
+
+    val animatedOffsetX by animateDpAsState(targetValue = if (drawerState.isOpened()) offsetValue else 0.dp)
+    val animatedOffsetY by animateDpAsState(targetValue = if (drawerState.isOpened()) offsetValue else 0.dp)
 
     BackHandler(enabled = drawerState.isOpened()) { drawerState = CustomDrawerState.Closed }
 
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
 
         if (drawerState.isOpened()) {
             CustomSideMenu(
@@ -49,8 +58,15 @@ fun DashboardScreen() {
 
         DashboardContent(
             modifier = Modifier
-                .offset(x = animatedOffset)
-                .scale(scale = animatedScale)
+                .fillMaxSize()
+                .offset(
+                    x = animatedOffsetX,
+                    y = animatedOffsetY
+                )
+                .scale(
+                    scaleX = animatedScaleX,
+                    scaleY = animatedScaleY
+                )
                 .padding(24.dp),
             drawerState = drawerState,
             onDrawerClick = { drawerState = it },
