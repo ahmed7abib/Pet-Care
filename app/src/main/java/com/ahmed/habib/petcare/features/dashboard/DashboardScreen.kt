@@ -3,8 +3,6 @@ package com.ahmed.habib.petcare.features.dashboard
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.transformable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
@@ -20,8 +18,6 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import com.ahmed.habib.petcare.ui.theme.Grey0
-import com.ahmed.habib.petcare.ui.theme.Grey2
 import kotlin.math.roundToInt
 
 @Composable
