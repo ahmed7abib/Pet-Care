@@ -74,4 +74,8 @@ dependencies {
 
     // Foundation
     implementation(libs.androidx.foundation)
+
+    // Nav Component
+    // Navigation Component
+    implementation(libs.navigation.compose)
 }

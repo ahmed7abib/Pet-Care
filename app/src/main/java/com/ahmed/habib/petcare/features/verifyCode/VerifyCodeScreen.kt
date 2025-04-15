@@ -38,7 +38,9 @@ import com.ahmed.habib.petcare.ui.theme.Grey3
 import com.ahmed.habib.petcare.ui.theme.Grey4
 
 @Composable
-fun VerifyCodeScreen() {
+fun VerifyCodeScreen(
+    onConfirmBtnClicked: () -> Unit,
+) {
 
     OnboardingBaseScreen(
         circleIcon = R.drawable.scan,
@@ -165,8 +167,4 @@ private fun verify(code: String) {
 
 private fun onResendBtnClicked() {
     // todo: resend
-}
-
-fun onConfirmBtnClicked() {
-    // todo: confirm
 }

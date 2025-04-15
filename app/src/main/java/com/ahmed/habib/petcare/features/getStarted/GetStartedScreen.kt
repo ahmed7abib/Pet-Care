@@ -32,7 +32,10 @@ import com.ahmed.habib.petcare.ui.theme.Grey2
 import com.ahmed.habib.petcare.ui.theme.Yellow
 
 @Composable
-fun GetStartedScreen() {
+fun GetStartedScreen(
+    onGetStartedClick: () -> Unit,
+    onSignUpLaterClick: () -> Unit,
+) {
 
     OnboardingBaseScreen(
         circleIcon = R.drawable.edit_icon,
@@ -104,12 +107,4 @@ fun GetStartedScreen() {
             modifier = Modifier.clickable { onSignUpLaterClick() }
         )
     }
-}
-
-private fun onGetStartedClick() {
-    // todo.
-}
-
-private fun onSignUpLaterClick() {
-    // todo.
 }

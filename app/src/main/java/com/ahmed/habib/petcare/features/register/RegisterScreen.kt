@@ -1,5 +1,6 @@
 package com.ahmed.habib.petcare.features.register
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -33,17 +35,21 @@ import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.features.onBoarding.OnboardingBaseScreen
 import com.ahmed.habib.petcare.ui.common.getCatamaranFont
 import com.ahmed.habib.petcare.ui.common.getNotoSansFont
+import com.ahmed.habib.petcare.ui.common.showToast
 import com.ahmed.habib.petcare.ui.theme.Blue1
 import com.ahmed.habib.petcare.ui.theme.Grey2
 import com.ahmed.habib.petcare.ui.theme.Grey3
 import com.ahmed.habib.petcare.ui.theme.Grey4
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(
+    onCreateAccountClicked: () -> Unit,
+) {
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var isTermsAccepted by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     OnboardingBaseScreen(
         circleIcon = R.drawable.account,
@@ -165,16 +171,12 @@ fun RegisterScreen() {
                 color = Blue1,
                 fontSize = 14.sp,
                 fontFamily = getNotoSansFont(),
-                modifier = Modifier.clickable { onLoginHereClicked() }
+                modifier = Modifier.clickable { onLoginHereClicked(context) }
             )
         }
     }
 }
 
-private fun onCreateAccountClicked() {
-    // todo: create account.
-}
-
-private fun onLoginHereClicked() {
-    // todo: login
+private fun onLoginHereClicked(context: Context) {
+    context.showToast("Todo: login")
 }
