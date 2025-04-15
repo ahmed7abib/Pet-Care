@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,12 +30,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.ui.common.AsyncImage
+import com.ahmed.habib.petcare.ui.common.SearchView
 import com.ahmed.habib.petcare.ui.common.SwipeButton
 import com.ahmed.habib.petcare.ui.common.getCatamaranFont
 import com.ahmed.habib.petcare.ui.common.getNotoSansFont
@@ -43,6 +46,7 @@ import com.ahmed.habib.petcare.ui.theme.Blue1
 import com.ahmed.habib.petcare.ui.theme.Grey2
 import com.ahmed.habib.petcare.ui.theme.Grey3
 import com.ahmed.habib.petcare.ui.theme.Grey7
+import com.ahmed.habib.petcare.ui.theme.Navy
 
 @Composable
 fun DashboardContent(
@@ -61,7 +65,7 @@ fun DashboardContent(
         Toolbar(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp)
+                .height(70.dp)
                 .constrainAs(toolbar) {
                     top.linkTo(parent.top)
                     start.linkTo(parent.start)
@@ -120,7 +124,7 @@ fun DashboardContent(
 @Composable
 private fun Toolbar(
     modifier: Modifier,
-    userName: String = "Ahmed",
+    userName: String = "Ahmed Adel",
     userImageUrl: String? = null,
     drawerState: CustomDrawerState,
     onDrawerClick: (CustomDrawerState) -> Unit,
@@ -131,6 +135,10 @@ private fun Toolbar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
+            modifier = Modifier
+                .weight(0.7f)
+                .fillMaxHeight()
+                .background(Navy),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             AsyncImage(
@@ -157,38 +165,51 @@ private fun Toolbar(
                     text = userName,
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp,
-                    color = Color.Black
+                    color = Color.Black,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+        Box(
+            modifier = Modifier
+                .weight(1.3f)
+                .fillMaxHeight()
+                .background(Grey2),
+            contentAlignment = Alignment.CenterEnd
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.search),
-                contentDescription = "Search",
-                modifier = Modifier.size(20.dp)
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.End
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.search),
+                    contentDescription = "Search",
+                    modifier = Modifier.size(20.dp)
+                )
 
-            VerticalDivider(
-                thickness = 1.dp,
-                color = Grey7,
-                modifier = Modifier
-                    .width(1.dp)
-                    .height(16.dp)
-            )
+                VerticalDivider(
+                    thickness = 1.dp,
+                    color = Grey7,
+                    modifier = Modifier
+                        .padding(horizontal = 12.dp)
+                        .width(1.dp)
+                        .height(16.dp)
+                )
 
-            Icon(
-                painter = painterResource(id = R.drawable.side_menu),
-                contentDescription = "Menu",
-                modifier = Modifier
-                    .size(20.dp)
-                    .clickable {
-                        onDrawerClick(drawerState.opposite())
-                    },
-            )
+                Icon(
+                    painter = painterResource(id = R.drawable.side_menu),
+                    contentDescription = "Menu",
+                    modifier = Modifier
+                        .size(20.dp)
+                        .clickable {
+                            onDrawerClick(drawerState.opposite())
+                        },
+                )
+            }
+
+            SearchView()
         }
     }
 }
