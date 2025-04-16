@@ -55,16 +55,10 @@ fun DashboardScreen() {
         DashboardContent(
             modifier = Modifier
                 .fillMaxSize()
-                .offset(
-                    x = animatedOffsetX,
-                    y = animatedOffsetY
-                )
-                .scale(
-                    scaleX = animatedScaleX,
-                    scaleY = animatedScaleY
-                )
+                .offset(x = animatedOffsetX, y = animatedOffsetY)
+                .scale(scaleX = animatedScaleX, scaleY = animatedScaleY)
                 .padding(24.dp),
-            drawerState = drawerState,
+            drawerState,
             onDrawerClick = { drawerState = it },
         )
     }

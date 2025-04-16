@@ -21,6 +21,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -37,7 +41,6 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.ui.common.AsyncImage
-import com.ahmed.habib.petcare.ui.common.SearchView
 import com.ahmed.habib.petcare.ui.common.SwipeButton
 import com.ahmed.habib.petcare.ui.common.getCatamaranFont
 import com.ahmed.habib.petcare.ui.common.getNotoSansFont
@@ -46,20 +49,25 @@ import com.ahmed.habib.petcare.ui.theme.Blue1
 import com.ahmed.habib.petcare.ui.theme.Grey2
 import com.ahmed.habib.petcare.ui.theme.Grey3
 import com.ahmed.habib.petcare.ui.theme.Grey7
-import com.ahmed.habib.petcare.ui.theme.Navy
+
 
 @Composable
 fun DashboardContent(
     modifier: Modifier = Modifier,
-    drawerState: CustomDrawerState,
+    drawerStatus: CustomDrawerState,
     onDrawerClick: (CustomDrawerState) -> Unit,
 ) {
+
+    var searchBarState by remember { mutableStateOf(false) }
+
     ConstraintLayout(
-        modifier = modifier
-            .clickable(enabled = drawerState == CustomDrawerState.Opened) {
-                onDrawerClick(CustomDrawerState.Closed)
-            }
+        modifier = modifier.clickable(
+            enabled = drawerStatus == CustomDrawerState.Opened,
+        ) {
+            onDrawerClick(CustomDrawerState.Closed)
+        }
     ) {
+
         val (toolbar, lineSeparationOne, content, bottomBar) = createRefs()
 
         Toolbar(
@@ -71,10 +79,10 @@ fun DashboardContent(
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-            drawerState = drawerState
-        ) {
-            onDrawerClick(it)
-        }
+            searchBarStatus = searchBarState,
+            onSearchBarStateChanged = { searchBarState = it },
+            onDrawerClick = { onDrawerClick(it) },
+        )
 
         HorizontalDivider(
             modifier = Modifier
@@ -126,7 +134,8 @@ private fun Toolbar(
     modifier: Modifier,
     userName: String = "Ahmed Adel",
     userImageUrl: String? = null,
-    drawerState: CustomDrawerState,
+    searchBarStatus: Boolean = false,
+    onSearchBarStateChanged: (Boolean) -> Unit,
     onDrawerClick: (CustomDrawerState) -> Unit,
 ) {
     Row(
@@ -137,8 +146,7 @@ private fun Toolbar(
         Row(
             modifier = Modifier
                 .weight(0.7f)
-                .fillMaxHeight()
-                .background(Navy),
+                .fillMaxHeight(),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             AsyncImage(
@@ -175,41 +183,47 @@ private fun Toolbar(
         Box(
             modifier = Modifier
                 .weight(1.3f)
-                .fillMaxHeight()
-                .background(Grey2),
+                .fillMaxHeight(),
             contentAlignment = Alignment.CenterEnd
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.End
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.search),
-                    contentDescription = "Search",
-                    modifier = Modifier.size(20.dp)
-                )
-
-                VerticalDivider(
-                    thickness = 1.dp,
-                    color = Grey7,
+            if (searchBarStatus) {
+                Text(
+                    "search",
                     modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .width(1.dp)
-                        .height(16.dp)
+                        .padding(end = 16.dp)
+                        .clickable { onSearchBarStateChanged(false) }
                 )
+            } else {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.search),
+                        contentDescription = "Search",
+                        modifier = Modifier
+                            .size(20.dp)
+                            .clickable { onSearchBarStateChanged(true) },
+                    )
 
-                Icon(
-                    painter = painterResource(id = R.drawable.side_menu),
-                    contentDescription = "Menu",
-                    modifier = Modifier
-                        .size(20.dp)
-                        .clickable {
-                            onDrawerClick(drawerState.opposite())
-                        },
-                )
+                    VerticalDivider(
+                        thickness = 1.dp,
+                        color = Grey7,
+                        modifier = Modifier
+                            .padding(horizontal = 12.dp)
+                            .width(1.dp)
+                            .height(16.dp)
+                    )
+
+                    Icon(
+                        painter = painterResource(id = R.drawable.side_menu),
+                        contentDescription = "Menu",
+                        modifier = Modifier
+                            .size(20.dp)
+                            .clickable { onDrawerClick(CustomDrawerState.Opened) },
+                    )
+                }
             }
-
-            SearchView()
         }
     }
 }
