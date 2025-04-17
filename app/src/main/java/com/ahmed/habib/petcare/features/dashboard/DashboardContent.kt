@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -41,6 +42,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.ahmed.habib.petcare.R
 import com.ahmed.habib.petcare.ui.common.AsyncImage
+import com.ahmed.habib.petcare.ui.common.CustomSearchView
 import com.ahmed.habib.petcare.ui.common.SwipeButton
 import com.ahmed.habib.petcare.ui.common.getCatamaranFont
 import com.ahmed.habib.petcare.ui.common.getNotoSansFont
@@ -58,7 +60,8 @@ fun DashboardContent(
     onDrawerClick: (CustomDrawerState) -> Unit,
 ) {
 
-    var searchBarState by remember { mutableStateOf(false) }
+    var searchText by remember { mutableStateOf("") }
+    var showSearchBar by remember { mutableStateOf(false) }
 
     ConstraintLayout(
         modifier = modifier.clickable(
@@ -79,8 +82,10 @@ fun DashboardContent(
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 },
-            searchBarStatus = searchBarState,
-            onSearchBarStateChanged = { searchBarState = it },
+            searchText = searchText,
+            searchTextCallBack = { searchText = it },
+            showSearchBar = showSearchBar,
+            onSearchBarStateChanged = { showSearchBar = it },
             onDrawerClick = { onDrawerClick(it) },
         )
 
@@ -129,12 +134,15 @@ fun DashboardContent(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Toolbar(
     modifier: Modifier,
     userName: String = "Ahmed Adel",
     userImageUrl: String? = null,
-    searchBarStatus: Boolean = false,
+    searchText: String,
+    searchTextCallBack: (String) -> Unit = {},
+    showSearchBar: Boolean = false,
     onSearchBarStateChanged: (Boolean) -> Unit,
     onDrawerClick: (CustomDrawerState) -> Unit,
 ) {
@@ -186,12 +194,11 @@ private fun Toolbar(
                 .fillMaxHeight(),
             contentAlignment = Alignment.CenterEnd
         ) {
-            if (searchBarStatus) {
-                Text(
-                    "search",
-                    modifier = Modifier
-                        .padding(end = 16.dp)
-                        .clickable { onSearchBarStateChanged(false) }
+            if (showSearchBar) {
+                CustomSearchView(
+                    text = searchText,
+                    onValueChange = { searchTextCallBack(it) },
+                    onExitClick = { onSearchBarStateChanged(false) },
                 )
             } else {
                 Row(
