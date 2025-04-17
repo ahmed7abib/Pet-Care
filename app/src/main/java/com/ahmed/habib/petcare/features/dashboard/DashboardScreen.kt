@@ -50,9 +50,17 @@ fun DashboardScreen() {
         label = "scale"
     )
 
-    BackHandler(enabled = drawerState.isOpened()) {
-        drawerState = CustomDrawerState.Closed
+    val dashboardShape = when {
+        drawerState.isOpened() -> {
+            RoundedCornerShape(16.dp)
+        }
+
+        else -> {
+            RoundedCornerShape(0.dp)
+        }
     }
+
+    BackHandler(enabled = drawerState.isOpened()) { drawerState = CustomDrawerState.Closed }
 
     Box(
         modifier = Modifier
@@ -66,16 +74,6 @@ fun DashboardScreen() {
             onCloseClick = { drawerState = CustomDrawerState.Closed }
         )
 
-        val dashboardShape = when {
-            drawerState.isOpened() -> {
-                RoundedCornerShape(16.dp)
-            }
-
-            else -> {
-                RoundedCornerShape(0.dp)
-            }
-        }
-
         DashboardContent(
             modifier = Modifier
                 .fillMaxSize()
@@ -87,9 +85,7 @@ fun DashboardScreen() {
                 )
                 .padding(24.dp),
             drawerStateValue = drawerState,
-            onDrawerClick = {
-                drawerState = it
-            },
+            onDrawerClick = { drawerState = it }
         )
     }
 }
