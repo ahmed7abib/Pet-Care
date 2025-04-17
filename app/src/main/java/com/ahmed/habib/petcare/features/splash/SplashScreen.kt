@@ -4,12 +4,14 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.ahmed.habib.petcare.R
 import kotlinx.coroutines.delay
@@ -43,10 +45,11 @@ fun SplashScreen(
             contentDescription = "Splash Logo",
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(48.dp)
                 .constrainAs(logoImage) {
                     top.linkTo(parent.top)
-                    start.linkTo(parent.start)
                     end.linkTo(parent.end)
+                    start.linkTo(parent.start)
                 }
         )
 
@@ -54,11 +57,10 @@ fun SplashScreen(
             painter = painterResource(id = R.drawable.dog_cropped),
             contentDescription = "Dog",
             modifier = Modifier
-                .fillMaxWidth()
                 .constrainAs(dogImage) {
-                    top.linkTo(logoImage.bottom)
-                    bottom.linkTo(parent.bottom)
                     start.linkTo(parent.start)
+                    bottom.linkTo(parent.bottom)
+                    height = androidx.constraintlayout.compose.Dimension.fillToConstraints
                 }
         )
     }
