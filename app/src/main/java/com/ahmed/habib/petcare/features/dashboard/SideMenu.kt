@@ -152,13 +152,6 @@ fun CustomDrawerState.isOpened(): Boolean {
     return this.name == "Opened"
 }
 
-fun CustomDrawerState.opposite(): CustomDrawerState {
-    return when (CustomDrawerState.Opened) {
-        this -> CustomDrawerState.Closed
-        else -> CustomDrawerState.Opened
-    }
-}
-
 enum class NavigationItem(
     val title: String,
     val icon: Int,
