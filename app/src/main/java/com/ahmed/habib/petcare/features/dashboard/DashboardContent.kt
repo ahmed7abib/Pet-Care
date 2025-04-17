@@ -56,7 +56,7 @@ import com.ahmed.habib.petcare.ui.theme.Grey7
 @Composable
 fun DashboardContent(
     modifier: Modifier = Modifier,
-    drawerStatus: CustomDrawerState,
+    drawerStateValue: CustomDrawerState,
     onDrawerClick: (CustomDrawerState) -> Unit,
 ) {
 
@@ -65,7 +65,7 @@ fun DashboardContent(
 
     ConstraintLayout(
         modifier = modifier.clickable(
-            enabled = drawerStatus == CustomDrawerState.Opened,
+            enabled = drawerStateValue == CustomDrawerState.Opened,
         ) {
             onDrawerClick(CustomDrawerState.Closed)
         }

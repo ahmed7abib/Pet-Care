@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -32,15 +33,26 @@ fun DashboardScreen() {
     val screenWidth = LocalConfiguration.current.screenWidthDp
 
     val screenWidthState = remember { derivedStateOf { (screenWidth * density).roundToInt() } }
-    val offsetValue by remember { derivedStateOf { (screenWidthState.value / 4).dp } }
+    val offsetValue by remember { derivedStateOf { (screenWidthState.value / 3.5).dp } }
 
-    val animatedScaleX by animateFloatAsState(targetValue = if (drawerState.isOpened()) 0.7f else 1f)
-    val animatedScaleY by animateFloatAsState(targetValue = if (drawerState.isOpened()) 0.85f else 1f)
+    val animatedOffsetX by animateDpAsState(
+        targetValue = if (drawerState.isOpened()) offsetValue else 0.dp,
+        label = "offsetX"
+    )
 
-    val animatedOffsetX by animateDpAsState(targetValue = if (drawerState.isOpened()) offsetValue else 0.dp)
-    val animatedOffsetY by animateDpAsState(targetValue = if (drawerState.isOpened()) offsetValue else 0.dp)
+    val animatedOffsetY by animateDpAsState(
+        targetValue = if (drawerState.isOpened()) 135.dp else 0.dp,
+        label = "offsetY"
+    )
 
-    BackHandler(enabled = drawerState.isOpened()) { drawerState = CustomDrawerState.Closed }
+    val animatedScale by animateFloatAsState(
+        targetValue = if (drawerState.isOpened()) 0.83f else 1f,
+        label = "scale"
+    )
+
+    BackHandler(enabled = drawerState.isOpened()) {
+        drawerState = CustomDrawerState.Closed
+    }
 
     Box(
         modifier = Modifier
@@ -48,22 +60,36 @@ fun DashboardScreen() {
             .background(Color.White)
     ) {
 
-        if (drawerState.isOpened()) {
-            CustomSideMenu(
-                selectedNavigationItem = selectedNavigationItem,
-                onNavigationItemClick = { selectedNavigationItem = it },
-                onCloseClick = { drawerState = CustomDrawerState.Closed }
-            )
+        CustomSideMenu(
+            selectedNavigationItem = selectedNavigationItem,
+            onNavigationItemClick = { selectedNavigationItem = it },
+            onCloseClick = { drawerState = CustomDrawerState.Closed }
+        )
+
+        val dashboardShape = when {
+            drawerState.isOpened() -> {
+                RoundedCornerShape(16.dp)
+            }
+
+            else -> {
+                RoundedCornerShape(0.dp)
+            }
         }
 
         DashboardContent(
             modifier = Modifier
                 .fillMaxSize()
                 .offset(x = animatedOffsetX, y = animatedOffsetY)
-                .scale(scaleX = animatedScaleX, scaleY = animatedScaleY)
+                .scale(animatedScale)
+                .background(
+                    color = Color.White,
+                    shape = dashboardShape
+                )
                 .padding(24.dp),
-            drawerState,
-            onDrawerClick = { drawerState = it },
+            drawerStateValue = drawerState,
+            onDrawerClick = {
+                drawerState = it
+            },
         )
     }
 }
