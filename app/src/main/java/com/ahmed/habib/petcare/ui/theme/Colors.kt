@@ -19,6 +19,7 @@ val Grey4 = Color(0xFFA0AEC0)
 val Grey5 = Color(0xFFFAFAFA)
 val Grey6 = Color(0xFFD9D9D9)
 val Grey7 = Color(0xFFD9DFE6)
+val Grey8 = Color(0xFFECEFF2)
 
 val Blue0 = Color(0xFFD6EBFF)
 val Blue1 = Color(0xFF007BFF)

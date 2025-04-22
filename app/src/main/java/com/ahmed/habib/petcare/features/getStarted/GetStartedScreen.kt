@@ -37,9 +37,8 @@ fun GetStartedScreen(
     onSignUpLaterClick: () -> Unit,
 ) {
 
-    OnboardingBaseScreen(
-        circleIcon = R.drawable.edit_icon,
-    ) {
+    OnboardingBaseScreen(circleIcon = R.drawable.edit_icon) {
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
@@ -62,25 +61,25 @@ fun GetStartedScreen(
 
         Text(
             text = stringResource(R.string.personalized_pet_profiles),
-            fontSize = 26.sp,
-            fontWeight = FontWeight.W700,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.ExtraBold,
             fontFamily = getCatamaranFont(),
             color = Grey1,
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(12.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Text(
             text = stringResource(R.string.create_personalized_profiles_for_each_of_your_beloved_pets_on_pawbuddy_share_their_name_breed_and_age_while_connecting_with_a_vibrant_community),
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             fontFamily = getNotoSansFont(),
-            fontWeight = FontWeight.W500,
+            fontWeight = FontWeight.Light,
             color = Grey2,
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Button(
             onClick = { onGetStartedClick() },
@@ -93,16 +92,18 @@ fun GetStartedScreen(
             Text(
                 text = stringResource(R.string.get_started),
                 color = Color.White,
+                fontSize = 14.sp,
+                fontFamily = getNotoSansFont(),
                 fontWeight = FontWeight.Bold
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Text(
             text = stringResource(R.string.sign_up_later),
             color = Color.Gray,
-            fontSize = 14.sp,
+            fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.clickable { onSignUpLaterClick() }
         )

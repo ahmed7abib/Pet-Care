@@ -13,7 +13,6 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,8 +47,8 @@ fun VerifyCodeScreen(
 
         Text(
             text = stringResource(R.string.validation_code),
-            fontSize = 26.sp,
-            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.ExtraBold,
             fontFamily = getCatamaranFont(),
             color = Grey3
         )
@@ -58,23 +57,24 @@ fun VerifyCodeScreen(
 
         Text(
             text = stringResource(R.string.check_your_email_inbox_and_enter_the_validation_code_here),
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             color = Grey2,
             fontFamily = getNotoSansFont(),
+            fontWeight = FontWeight.Light,
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         VerificationCodeInput { code -> verify(code) }
 
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         Button(
             onClick = { onConfirmBtnClicked() },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp),
+                .height(45.dp),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Blue1)
         ) {
@@ -87,20 +87,22 @@ fun VerifyCodeScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Row {
             Text(
                 text = stringResource(R.string.did_not_receive_the_code),
                 color = Grey4,
                 fontFamily = getNotoSansFont(),
-                fontSize = 14.sp
+                fontWeight = FontWeight.Light,
+                fontSize = 12.sp
             )
 
             Text(
                 text = stringResource(R.string.resend),
                 color = Blue1,
-                fontSize = 14.sp,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
                 fontFamily = getNotoSansFont(),
                 modifier = Modifier.clickable { onResendBtnClicked() }
             )
@@ -123,10 +125,18 @@ fun VerificationCodeInput(
                 value = code[i],
                 onValueChange = { newValue ->
                     if (newValue.length <= 1 && newValue.all { it.isDigit() }) {
-                        code = code.toMutableList().also { it[i] = newValue }
+                        val newCode = code.toMutableList()
+                        newCode[i] = newValue
+                        code = newCode
 
-                        if (newValue.isNotEmpty() && i < numberOfDigits - 1) {
-                            focusRequesters[i + 1].requestFocus()
+                        when {
+                            newValue.isNotEmpty() && i < numberOfDigits - 1 -> {
+                                focusRequesters[i + 1].requestFocus()
+                            }
+
+                            newValue.isEmpty() && i > 0 -> {
+                                focusRequesters[i - 1].requestFocus()
+                            }
                         }
 
                         if (code.all { it.isNotEmpty() }) {
@@ -137,10 +147,12 @@ fun VerificationCodeInput(
                 singleLine = true,
                 textStyle = LocalTextStyle.current.copy(
                     textAlign = TextAlign.Center,
-                    fontSize = 20.sp
+                    fontSize = 14.sp,
+                    fontFamily = getNotoSansFont(),
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
                 ),
                 modifier = Modifier
-                    .width(0.dp)
                     .weight(1f)
                     .focusRequester(focusRequesters[i])
                     .focusProperties {
@@ -154,10 +166,6 @@ fun VerificationCodeInput(
                 Spacer(modifier = Modifier.width(8.dp))
             }
         }
-    }
-
-    LaunchedEffect(Unit) {
-        focusRequesters.first().requestFocus()
     }
 }
 

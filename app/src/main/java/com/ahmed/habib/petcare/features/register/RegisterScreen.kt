@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
@@ -28,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,8 +59,8 @@ fun RegisterScreen(
 
         Text(
             text = stringResource(R.string.create_account),
-            fontSize = 26.sp,
-            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.ExtraBold,
             fontFamily = getCatamaranFont(),
             color = Grey3
         )
@@ -67,26 +69,32 @@ fun RegisterScreen(
 
         Text(
             text = stringResource(R.string.welcome_please_enter_your_information_below_and_get_started),
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             color = Grey2,
+            fontWeight = FontWeight.Light,
             fontFamily = getNotoSansFont(),
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text(stringResource(R.string.your_email)) },
+            label = { Text(stringResource(R.string.your_email), fontSize = 12.sp) },
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
+            shape = RoundedCornerShape(8.dp),
+            singleLine = true,
+            maxLines = 1,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
                 unfocusedIndicatorColor = Color.LightGray,
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
-                focusedLabelColor = Blue1,
+                focusedLabelColor = Color.Black,
                 unfocusedLabelColor = Grey2
             )
         )
@@ -96,16 +104,20 @@ fun RegisterScreen(
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text(stringResource(R.string.password)) },
-            modifier = Modifier
-                .fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
+            label = { Text(stringResource(R.string.password), fontSize = 12.sp) },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(8.dp),
+            singleLine = true,
+            maxLines = 1,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.LightGray,
+                focusedTextColor = Color.Black,
+                unfocusedTextColor = Color.Black,
                 unfocusedIndicatorColor = Color.LightGray,
                 focusedContainerColor = Color.Transparent,
                 unfocusedContainerColor = Color.Transparent,
-                focusedLabelColor = Blue1,
+                focusedLabelColor = Color.Black,
                 unfocusedLabelColor = Grey2
             )
         )
@@ -120,7 +132,7 @@ fun RegisterScreen(
                 checked = isTermsAccepted,
                 onCheckedChange = { isTermsAccepted = it },
                 modifier = Modifier
-                    .size(16.dp)
+                    .size(20.dp)
                     .padding(start = 12.dp),
                 colors = CheckboxDefaults.colors(
                     checkedColor = Blue1,
@@ -132,44 +144,48 @@ fun RegisterScreen(
 
             Text(
                 text = stringResource(R.string.accept_terms_and_conditions),
-                fontSize = 14.sp,
+                fontSize = 12.sp,
+                fontFamily = getNotoSansFont(),
+                fontWeight = FontWeight.Light,
                 color = Grey2
             )
         }
 
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
         Button(
             onClick = { onCreateAccountClicked() },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(50.dp),
+                .height(45.dp),
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Blue1)
         ) {
             Text(
                 text = stringResource(R.string.create_account),
                 color = Color.White,
-                fontSize = 14.sp,
+                fontSize = 12.sp,
                 fontFamily = getNotoSansFont(),
                 fontWeight = FontWeight.Bold
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         Row {
             Text(
                 text = stringResource(R.string.already_have_an_account),
                 color = Grey4,
                 fontFamily = getNotoSansFont(),
-                fontSize = 14.sp
+                fontWeight = FontWeight.Light,
+                fontSize = 12.sp
             )
 
             Text(
                 text = stringResource(R.string.login_here),
                 color = Blue1,
-                fontSize = 14.sp,
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
                 fontFamily = getNotoSansFont(),
                 modifier = Modifier.clickable { onLoginHereClicked(context) }
             )

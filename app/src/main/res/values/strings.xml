@@ -20,4 +20,6 @@
     <string name="uh_oh">Uh Oh!</string>
     <string name="swipe_to_continue">Swipe To Continue</string>
     <string name="search">Search...</string>
+    <string name="add_pet_profile">Add Pet Profile</string>
+    <string name="step">Step</string>
 </resources>
